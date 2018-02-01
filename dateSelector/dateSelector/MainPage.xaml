@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:dateSelector"
+             x:Class="dateSelector.MainPage">
+
+    <StackLayout>
+        <Label Text="Select year and month"
+           VerticalOptions="Center"
+           HorizontalOptions="Center" />
+        <!--OneWayToSource means only codebehind value is set-->
+        <local:YearMonthSelector MaximumDate="{Binding MaxDate}"
+                                 SelectedDate="{Binding MyDate, Mode=OneWayToSource}"></local:YearMonthSelector>
+        <Label Text="{Binding MyDate}"/>
+    </StackLayout>
+
+</ContentPage>
