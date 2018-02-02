@@ -101,7 +101,7 @@ namespace dateSelector
             }
             else
             {
-                var newMonths = getMonths(11);
+                var newMonths = getMonths(12);
                 if (Months.Count != newMonths.Count)
                     Months = newMonths;
             }
@@ -137,6 +137,29 @@ namespace dateSelector
             var y = Years[SelectedYearIndex];
             var m = DateTime.ParseExact(Months[SelectedMonthIndex], "MMMM", CultureInfo.InvariantCulture).Month;
             return new DateTime(y, m, 1);
+        }
+
+        public void SetSelectedDate(DateTime newDate)
+        {
+            // Set selected or highest possible year
+            if (newDate.Year < Years.LastOrDefault())
+            {
+                SelectedYearIndex = Years.IndexOf(newDate.Year);
+            }
+            else
+            {
+                SelectedYearIndex = Years.Count - 1;
+            }
+            SetMonthRange();
+            // Set selected or highest possible month
+            if (newDate.Month < Months.Count)
+            {
+                SelectedMonthIndex = newDate.Month -1;
+            }
+            else
+            {
+                SelectedMonthIndex = Months.Count - 1;
+            }
         }
 
         private void NotifyPropertyChanged(string propertyName)

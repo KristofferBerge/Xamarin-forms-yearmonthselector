@@ -103,7 +103,15 @@ namespace dateSelector
         }
         private static void OnSelectedDateChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            Debug.WriteLine(oldValue + " " + newValue);
+            if (((DateTime)newValue).Ticks == 0) {
+                // If picker tries to set datetime to nothing, just ignore
+                return;
+            }
+            if (((YearMonthSelector)bindable).vm.GetSelectedDate().Ticks != ((DateTime)newValue).Ticks) {
+                // New value is out of sync with selected date in viewmodel
+                // This means that the date has changed outside the selector and we need to update the viewmodel to reflect the changes
+                ((YearMonthSelector)bindable).vm.SetSelectedDate((DateTime)newValue);
+            }
         }
     }
 }

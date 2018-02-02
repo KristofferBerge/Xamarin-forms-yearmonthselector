@@ -10,8 +10,12 @@
            HorizontalOptions="Center" />
         <!--OneWayToSource means only codebehind value is set-->
         <local:YearMonthSelector MaximumDate="{Binding MaxDate}"
-                                 SelectedDate="{Binding MyDate, Mode=OneWayToSource}"></local:YearMonthSelector>
+                                 SelectedDate="{Binding MyDate, Mode=TwoWay}"></local:YearMonthSelector>
         <Label Text="{Binding MyDate}"/>
+        <Button Text="Reduce month"
+                Clicked="ReduceMonth" />
+        <Button Text="Add month"
+                Clicked="AddMonth" />
     </StackLayout>
 
 </ContentPage>
